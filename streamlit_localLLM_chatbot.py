@@ -9,9 +9,10 @@ with st.sidebar:
     st.write("Ask me anything")
 
     st.subheader('Specify your Model and parameter ')
+
+    avail_models = [model["model"] for model in ollama.list()["models"]]
     #selected_model = st.sidebar.selectbox('Choose a local model', ['llama3', 'llama2','mistral'], key='selected_model')
-    st.session_state.selected_model = st.selectbox(
-    "Please select the model:", [model["name"] for model in ollama.list()["models"]])
+    selected_model = st.sidebar.selectbox('Choose a local model', avail_models, key='selected_model')
 
     st.markdown('You have chosen your model and parameters:')
     st.markdown(f"{selected_model}")
